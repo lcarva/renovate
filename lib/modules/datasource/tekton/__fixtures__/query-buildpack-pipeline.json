@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "id": 124,
+      "name": "buildpacks",
+      "catalog": {
+        "id": 1,
+        "name": "tekton",
+        "type": "community"
+      },
+      "categories": [],
+      "kind": "Pipeline",
+      "hubURLPath": "tekton/Pipeline/buildpacks",
+      "latestVersion": {
+        "id": 214,
+        "version": "0.2",
+        "displayName": "Buildpacks",
+        "description": "The Buildpacks pipeline builds source from a Git repository into a container image and pushes it to a registry, using Cloud Native Buildpacks.",
+        "minPipelinesVersion": "0.17.0",
+        "rawURL": "https://raw.githubusercontent.com/tektoncd/catalog/main/pipeline/buildpacks/0.2/buildpacks.yaml",
+        "webURL": "https://github.com/tektoncd/catalog/tree/main/pipeline/buildpacks/0.2/buildpacks.yaml",
+        "hubURLPath": "tekton/Pipeline/buildpacks/0.2",
+        "updatedAt": "2022-07-07T08:25:07Z",
+        "platforms": [
+          {
+            "id": 1,
+            "name": "linux/amd64"
+          }
+        ]
+      },
+      "tags": [
+        {
+          "id": 101,
+          "name": "image-build"
+        }
+      ],
+      "platforms": [
+        {
+          "id": 1,
+          "name": "linux/amd64"
+        }
+      ],
+      "rating": 5
+    }
+  ]
+}
