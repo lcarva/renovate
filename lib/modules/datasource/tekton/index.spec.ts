@@ -4,8 +4,8 @@ import * as httpMock from '../../../../test/http-mock';
 import { EXTERNAL_HOST_ERROR } from '../../../constants/error-messages';
 import {
   defaultRegistryUrl,
-  pipelineDatasource,
-  taskDatasource,
+  pipelineBundleDatasource,
+  taskBundleDatasource,
 } from './common';
 
 const depName = 'buildpacks';
@@ -20,7 +20,7 @@ describe('modules/datasource/tekton/index', () => {
           .reply(500);
         await expect(
           getPkgReleases({
-            datasource: taskDatasource,
+            datasource: taskBundleDatasource,
             depName,
           })
         ).rejects.toThrow(EXTERNAL_HOST_ERROR);
@@ -33,7 +33,7 @@ describe('modules/datasource/tekton/index', () => {
           .reply(200, []);
         expect(
           await getPkgReleases({
-            datasource: taskDatasource,
+            datasource: taskBundleDatasource,
             depName,
           })
         ).toBeNull();
@@ -45,7 +45,7 @@ describe('modules/datasource/tekton/index', () => {
           .get(`/v1/query?name=${depName}&kind=Task`)
           .reply(200, Fixtures.get('query-buildpack-task.json'));
         const res = await getPkgReleases({
-          datasource: taskDatasource,
+          datasource: taskBundleDatasource,
           depName,
         });
         expect(res).toMatchSnapshot();
@@ -63,7 +63,7 @@ describe('modules/datasource/tekton/index', () => {
           .reply(500);
         await expect(
           getPkgReleases({
-            datasource: pipelineDatasource,
+            datasource: pipelineBundleDatasource,
             depName,
           })
         ).rejects.toThrow(EXTERNAL_HOST_ERROR);
@@ -76,7 +76,7 @@ describe('modules/datasource/tekton/index', () => {
           .reply(200, []);
         expect(
           await getPkgReleases({
-            datasource: pipelineDatasource,
+            datasource: pipelineBundleDatasource,
             depName,
           })
         ).toBeNull();
@@ -88,7 +88,7 @@ describe('modules/datasource/tekton/index', () => {
           .get(`/v1/query?name=${depName}&kind=Pipeline`)
           .reply(200, Fixtures.get('query-buildpack-pipeline.json'));
         const res = await getPkgReleases({
-          datasource: pipelineDatasource,
+          datasource: pipelineBundleDatasource,
           depName,
         });
         expect(res).toMatchSnapshot();

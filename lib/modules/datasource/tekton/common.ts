@@ -1,5 +1,5 @@
 export const defaultRegistryUrl = 'https://api.hub.tekton.dev/';
 
-export const taskDatasource = 'tekton-task';
+export const taskBundleDatasource = 'tekton-hub-task';
 
-export const pipelineDatasource = 'tekton-pipeline';
+export const pipelineBundleDatasource = 'tekton-hub-pipeline';

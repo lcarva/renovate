@@ -1,0 +1,33 @@
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: build
+spec:
+  params:
+  - name: git-repo
+    description: The git repository url
+  - name: git-revision
+    description: The git revision
+  - name: git-repo-name
+    description: The human-friendly name of the git repo
+
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1beta1
+    kind: TaskRun
+    metadata:
+      generateName: git-clone-$(tt.params.git-repo-name)-
+    spec:
+      serviceAccountName: pipeline
+      taskRef:
+        bundle: gcr.io/tekton-releases/catalog/upstream/git-clone:0.1
+        kind: Task
+        name: git-clone
+      params:
+      - name: url
+        value: $(tt.params.git-repo)
+      - name: revision
+        value: $(tt.params.git-revision)
+      workspaces:
+      - name: shared
+        emptyDir: {}
